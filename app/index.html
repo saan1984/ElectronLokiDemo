@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome to Electron Loki Demo</title>
+    <link href="./stylesheets/css/app.css"
+          rel="stylesheet"
+          type="text/css">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          type="text/css">
+</head>
+<body ng-controller="StudentController">
+    <div class="form-group" >
+        <label>Student Name:</label>
+        <input type="text" ng-model="student.name"
+                     class="form-control" />
+        <label> Country:</label>
+        <input type="text" ng-model="student.country"
+                       class="form-control" />
+        <input type="button" ng-click="add(student)"
+               class="btn btn-lg btn-danger" value="Save" />
+    </div>
+</body>
+<script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/lokijs/src/lokijs.js"></script>
+<script src="node_modules/lokijs/src/loki-indexed-adapter.js"></script>
+<script src="node_modules/lokijs/src/loki-angular.js"></script>
+<script src="app.js"></script>
+</html>

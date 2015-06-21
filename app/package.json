@@ -1,0 +1,17 @@
+{
+  "name": "ElectronLokiDemo",
+  "productName": "ElectronLokiDemo",
+  "description": "ElectronLokiDemo",
+  "version": "0.0.1",
+  "author": "Sandeep",
+  "main": "main.js",
+  "config": {
+    "target": "development"
+  },
+  "dependencies": {
+    "angular": "^1.3.16",
+    "bootstrap": "^3.3.4",
+    "fs-jetpack": "^0.6.4",
+    "lokijs": "^1.3.4"
+  }
+}

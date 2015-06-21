@@ -2,6 +2,7 @@
 <html ng-app="myApp">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Electron Loki Demo</title>
     <link href="./stylesheets/css/app.css"
           rel="stylesheet"
@@ -10,16 +11,37 @@
           rel="stylesheet"
           type="text/css">
 </head>
-<body ng-controller="StudentController">
-    <div class="form-group" >
-        <label>Student Name:</label>
-        <input type="text" ng-model="student.name"
-                     class="form-control" />
-        <label> Country:</label>
-        <input type="text" ng-model="student.country"
+<body ng-controller="StudentController" class="container-fluid">
+<h1>Electron Loki JS Demo</h1>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group" >
+                <label>Student Name:</label>
+                <input type="text" ng-model="student.name"
                        class="form-control" />
-        <input type="button" ng-click="add(student)"
-               class="btn btn-lg btn-danger" value="Save" />
+                <label> Country:</label>
+                <input type="text" ng-model="student.country"
+                       class="form-control" />
+                <input type="button" ng-click="add(student)"
+                       class="btn btn-lg btn-danger" value="Save" />
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>country</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="astudent in studentCollection">
+                    <td>{{astudent.name}}</td>
+                    <td>{{astudent.country}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 <script src="node_modules/angular/angular.min.js"></script>

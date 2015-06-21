@@ -1,17 +1,22 @@
 var app = angular.module('myApp', ['lokijs']);
 app.controller("StudentController",
     ['$scope','Loki', function($scope,Loki){
-
+        $scope.studentCollection=[];
         function loadHandler(){
-            studentCollection = db.getCollection('students');
-            console.log("1",studentCollection)
-            if (studentCollection === null) {
-                db.addCollection('students');
-                studentCollection  = db.getCollection('students');
-                console.log("2",studentCollection)
-            }
-            db.saveDatabase();
+            $scope.$apply(function(){
+                studentCollection = db.getCollection('students');
+                console.log("1",studentCollection)
+                if (studentCollection === null) {
+                    db.addCollection('students');
+                    studentCollection  = db.getCollection('students');
+                    console.log("2",studentCollection)
+                }
+                db.saveDatabase();
+                $scope.studentCollection= studentCollection.data;
+            })
+
         }
+
         var studentCollection=null,
             db = new Loki('app/db.json',
             {   persistenceMethod:'fs',
@@ -23,12 +28,14 @@ app.controller("StudentController",
             this.name=name;
             this.country = country;
         }
+
         $scope.add = function(instudent){
             console.log(instudent)
             var student= new Student(instudent.name,instudent.country)
             studentCollection.insert(student);
             db.saveDatabase();
-            console.log(studentCollection)
+            $scope.studentCollection=studentCollection.data;
+            console.log($scope.studentCollection)
         }
     }]);
 

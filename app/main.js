@@ -26,10 +26,10 @@ app.on('ready', function () {
         mainWindow.maximize();
     }
    mainWindow.loadUrl('file://' + __dirname + '/index.html');
-    if (env.name === 'development') {
+    //if (env.name === 'development') {
         devHelper.setDevMenu();
         mainWindow.openDevTools();
-    }
+    //}
     mainWindow.webContents.on('did-finish-load', function() {
             mainWindow.show();
     });

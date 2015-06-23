@@ -14,21 +14,18 @@ app.controller("StudentController",
                 db.saveDatabase();
                 $scope.studentCollection= studentCollection.data;
             })
-
         }
-
         var studentCollection=null,
-            db = new Loki('app/db.json',
+            db = new Loki('db.json',
             {   persistenceMethod:'fs',
                 autoload: true,
+                autosave:true,
                 autoloadCallback: loadHandler
             });
-
         var Student = function(name,country){
             this.name=name;
             this.country = country;
         }
-
         $scope.add = function(instudent){
             console.log(instudent)
             var student= new Student(instudent.name,instudent.country)
@@ -38,4 +35,3 @@ app.controller("StudentController",
             console.log($scope.studentCollection)
         }
     }]);
-

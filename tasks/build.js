@@ -12,7 +12,7 @@ var destDir = projectDir.cwd('./build');
 
 var paths = {
     toCopy: [
-        'app/db.json',
+        'app/db/db.json',
         'app/main.js',
         'app/app.js',
         'app/node_modules/**',

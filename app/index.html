@@ -35,7 +35,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="astudent in studentCollection">
+                <tr ng-repeat="astudent in studentCollection track by $index
+                ">
                     <td>{{astudent.name}}</td>
                     <td>{{astudent.country}}</td>
                 </tr>

@@ -7,7 +7,6 @@
 ; --------------------------------
 ; Variables
 ; --------------------------------
-
 !define dest "{{dest}}"
 !define src "{{src}}"
 !define name "{{name}}"
@@ -16,6 +15,7 @@
 !define icon "{{icon}}"
 !define setupIcon "{{setupIcon}}"
 !define banner "{{banner}}"
+!define projectpath "{{projectpath}}"
 
 !define exec "electron.exe"
 
@@ -97,14 +97,24 @@ Section "Install"
     ; Include all files from /build directory
     File /r "${src}\*"
 
+
+    SetOutPath $PROGRAMFILES\${productName}
+    ; Include all files from /build directory
+    File /a "${projectpath}\db.json"
+
+    !addplugindir "C:\Program Files (x86)\NSIS\AccessControl\Plugins\"
+    AccessControl::GrantOnFile "$PROGRAMFILES\${productName}\db.json" "(S-1-5-32-545)" "FullAccess"
+    Pop $0
+    DetailPrint $0
+
     ; Create start menu shortcut
     CreateShortCut "$SMPROGRAMS\${productName}.lnk" "$INSTDIR\${exec}" "" "$INSTDIR\icon.ico"
 
-    FileOpen $0  "$PROGRAMFILES\${productName}\db.json" a
+    ;FileOpen $0  "$PROGRAMFILES\${productName}\db.json" a
     # write the string "hello world!" to the output file
-    FileWrite $0 '{"filename": "db.json","collections": [{"name": "students","data": [{"name":"dd","country":"dd","meta":{"revision":0,"created":1435001956989,"version":0},"$loki":1}]}]}'
+    ;FileWrite $0 '{"filename": "db.json","collections": [{"name": "students","data": [{"name":"dd","country":"dd","meta":{"revision":0,"created":1435001956989,"version":0},"$loki":1}]}]}'
     # close the file
-    FileClose $0
+    ;FileClose $0
 
     WriteUninstaller "${uninstaller}"
 
